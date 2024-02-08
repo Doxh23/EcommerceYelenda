@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\AuthController::class, "index"]);
+Route::get("/auth/login", \App\Livewire\Login::class)->name("auth.login");
