@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -16,14 +15,14 @@ class LoginForm extends Component
     public $password;
 
 
-    public function submit(Request $request)
+    public function submit()
     {
         $credentials = $this->validate();
-
+        $salut = "";
         if (Auth::attempt($credentials)) {
             session()->regenerate();
             return redirect("/")->with(["success" => "vous etes bien connecté"]);
-        };
+        }
         return to_route("auth.login")->with(["failed" => "you username or password is incorrect"]);
     }
 

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <meta charset="UTF-8">
@@ -9,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body class="text-white bg-[#001233]">
+<body class="relative text-white bg-[#001233]">
 <nav class="bg-[#ff5c50]">
     <ul class="flex flex-row gap-12 justify-center items-center text-xl h-12">
         <li><a href="{{route("welcome")}} "
@@ -44,11 +45,14 @@
 
     </ul>
 </nav>
-<div class="border border-red-700 mt-8 w-8/12 mx-auto">test</div>
-@if( session("failed"))
+{{--transform translate-x-1/2 translate-y-1/2--}}
 
+@if( session("failed"))
+    <div x-data="{show:true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" x-transition
+         class="border border-red-700 mt-10  w-2/4  bg-red-700 rounded pl-2 shadow-sm shadow-black absolute left-1/4 ">{{session("failed")}}</div>
 @elseif(session("success"))
-    <div class="border border-red-700">{{session("success")}} </div>
+    <div x-data="{show:true}" x-show="show" x-init="setTimeout(() => show = false, 3000)" x-transition
+         class="border border-green-700-700 mt-8 w-8/12 mx-auto bg-red-700 rounded pl-2 shadow-sm shadow-black ">{{session("success")}} </div>
 @endif
 <main class="min-h-[calc(100vh-48px)]  grid">
     @yield("content")
