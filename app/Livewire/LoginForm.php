@@ -4,14 +4,14 @@ namespace App\Livewire;
 
 
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class LoginForm extends Component
 {
-    #[Rule("required", message: "please complete your nickname")]
+    #[Validate("required", message: "please complete your nickname")]
     public $nickname;
-    #[Rule("required", message: "please complete your password")]
+    #[Validate("required", message: "please complete your password")]
     public $password;
 
 

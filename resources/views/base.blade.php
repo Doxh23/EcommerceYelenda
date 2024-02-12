@@ -49,10 +49,10 @@
 
 @if( session("failed"))
     <div x-data="{show:true}" x-show="show" x-init="setTimeout(() => show = false, 5000)" x-transition
-         class="border border-red-700 mt-10  w-2/4  bg-red-700 rounded pl-2 shadow-sm shadow-black absolute left-1/4 ">{{session("failed")}}</div>
+         class="border border-red-700 mt-10  w-2/4  bg-red-700 rounded pl-2 shadow-sm shadow-black absolute left-1/2 transform -translate-x-1/4 ">{{session("failed")}}</div>
 @elseif(session("success"))
     <div x-data="{show:true}" x-show="show" x-init="setTimeout(() => show = false, 3000)" x-transition
-         class="border border-green-700-700 mt-8 w-8/12 mx-auto bg-red-700 rounded pl-2 shadow-sm shadow-black ">{{session("success")}} </div>
+         class="border border-green-700-700 mt-8 w-8/12 mx-auto bg-green-700 rounded pl-2 shadow-sm shadow-black absolute  translate-x-1/4 ">{{session("success")}} </div>
 @endif
 <main class="min-h-[calc(100vh-48px)]  grid">
     @yield("content")

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -22,6 +20,10 @@ class AuthController extends Controller
 //            "phone" => "0497859536",
 //            "email" => "peters-adrien@live.be",
 //            "password" => Hash::make("test1234")
+//        ]);
+
+//        role::insert([
+//            ["nom" => "test"], ["nom" => "test1"], ["nom" => "test2"], ["nom" => "test3"],
 //        ]);
         return view("welcome");
     }

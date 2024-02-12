@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\AuthController::class, "index"])->name("welcome");
 Route::prefix("auth")->controller(\App\Http\Controllers\AuthController::class)->group(function () {
 
-    Route::get("/login", "login")->name("auth.login");
+    Route::get("/login", "login")->middleware("guest")->name("auth.login");
     Route::post("/login", "doLogin");
-    Route::delete("/logout", "logout")->name("auth.logout");
-    Route::get("/register", "register")->name("auth.register");
+    Route::delete("/logout", "logout")->middleware("auth")->name("auth.logout");
+    Route::get("/register", "register")->middleware("guest")->name("auth.register");
 });
 Route::prefix("products")->controller(\App\Http\Controllers\productController::class)->group(function () {
 

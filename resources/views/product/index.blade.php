@@ -2,5 +2,6 @@
 
 
 @section("content")
+    <livewire:products-index/>
 
 @endsection
