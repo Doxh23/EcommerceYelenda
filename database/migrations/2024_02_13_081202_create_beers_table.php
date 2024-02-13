@@ -19,9 +19,11 @@ return new class extends Migration {
             $table->foreignIdFor(\App\Models\flavor::class)->constrained()->cascadeOnDelete();;
             $table->foreignIdFor(\App\Models\brewing::class)->constrained()->cascadeOnDelete();;
             $table->foreignIdFor(\App\Models\containings::class)->constrained()->cascadeOnDelete();;
-            $table->foreignIdFor(\App\Models\category::class)->constrained()->cascadeOnDelete();;
+            $table->foreignIdFor(\App\Models\category::class)->constrained()->cascadeOnDelete();
+            $table->string("image_path")->nullable();
             $table->integer("tank_time");
             $table->integer("degree");
+            $table->integer("price");
             $table->integer(
                 "quantity"
             );
@@ -48,10 +50,12 @@ return new class extends Migration {
                 'category_id' => $faker->numberBetween(1, 5),
                 'tank_time' => $faker->numberBetween(1, 100),
                 'degree' => $faker->randomFloat(2, 0, 100),
+                'price' => $faker->randomFloat(1, 100),
                 'quantity' => $faker->numberBetween(1, 100),
                 'description' => $faker->sentence,
                 'stock' => $faker->numberBetween(0, 1000),
                 'salable' => $faker->boolean,
+                "image_path" => "/beers/1_test_test.jpg"
             ]);
         }
     }

@@ -22,6 +22,8 @@ class beer extends Model
         'description',
         'stock',
         'salable',
+        "price",
+        "image_path"
     ];
 
     public function brand()
