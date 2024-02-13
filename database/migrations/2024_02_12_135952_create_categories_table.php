@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
@@ -12,9 +13,18 @@ return new class extends Migration {
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string("nom")->unique();
+            $table->string("name")->unique();
             $table->timestamps();
         });
+
+        DB::table("categories")->insert([
+            ["name" => "Blonde", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "Brown", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "Amber", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "White", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "Red", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "Black", "created_at" => Carbon::now(), "updated_at" => Carbon::now()]
+        ]);
     }
 
     /**

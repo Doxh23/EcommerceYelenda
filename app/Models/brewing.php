@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class brassage extends Model
+class brewing extends Model
 {
     use HasFactory;
 
-    public $fillable = ["nom"];
+    public $fillable = [
+        "name"
+    ];
 }

@@ -22,9 +22,11 @@ class AuthController extends Controller
 //            "password" => Hash::make("test1234")
 //        ]);
 
+
 //        role::insert([
 //            ["nom" => "test"], ["nom" => "test1"], ["nom" => "test2"], ["nom" => "test3"],
 //        ]);
+
         return view("welcome");
     }
 

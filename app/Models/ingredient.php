@@ -10,6 +10,11 @@ class ingredient extends Model
     use HasFactory;
 
     public $fillable = [
-        "nom"
+        "name"
     ];
+
+    public function beers()
+    {
+        return $this->hasMany(beer::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
@@ -10,11 +11,19 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('brassages', function (Blueprint $table) {
+        Schema::create('brewings', function (Blueprint $table) {
             $table->id();
-            $table->string("nom")->unique();
+            $table->string("name")->unique();
             $table->timestamps();
         });
+        DB::table("brewings")->insert([
+            ["name" => "Infusion", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "Decoction", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "Maceration", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "Partial Infusion", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "Percolation", "created_at" => Carbon::now(), "updated_at" => Carbon::now()]
+
+        ]);
     }
 
     /**
@@ -22,6 +31,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('brassages');
+        Schema::dropIfExists('brewings');
     }
 };
