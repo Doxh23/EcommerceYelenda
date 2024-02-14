@@ -14,7 +14,7 @@ class beer extends Model
         'brand_id',
         'flavor_id',
         'brewing_id',
-        'containings_id',
+        'containing_id',
         'category_id',
         'tank_time',
         'degree',
@@ -47,7 +47,7 @@ class beer extends Model
     public function containing()
     {
 
-        return $this->belongsTo(containings::class);
+        return $this->belongsTo(containing::class);
     }
 
 

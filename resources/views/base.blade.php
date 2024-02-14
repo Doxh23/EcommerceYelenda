@@ -11,7 +11,9 @@
     <title>Document</title>
 </head>
 <body class="relative text-white bg-[#001233]">
-<nav class="bg-[#ff5c50]">
+<nav class="bg-[#ff5c50] flex flex-row justify-between px-3">
+    <div
+    ></div>
     <ul class="flex flex-row gap-12 justify-center items-center text-xl h-12">
         <li><a href="{{route("welcome")}} "
                class="hover:font-bold {{request()->routeIs("welcome")? "underline" : "" }}">
@@ -44,6 +46,9 @@
         @endauth
 
     </ul>
+    <div class="text-center align-text-bottom self-center">
+        <p>test</p>
+    </div>
 </nav>
 {{--transform translate-x-1/2 translate-y-1/2--}}
 
@@ -58,5 +63,6 @@
     @yield("content")
 </main>
 
+@livewireScripts
 </body>
 </html>

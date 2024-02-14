@@ -24,6 +24,7 @@ Route::prefix("auth")->controller(\App\Http\Controllers\AuthController::class)->
 Route::prefix("products")->controller(\App\Http\Controllers\productController::class)->group(function () {
 
     Route::get("/", "index")->name("product.index");
+    Route::get("/{id}", "product")->name("product.product");
 });
 
 //admin Route
