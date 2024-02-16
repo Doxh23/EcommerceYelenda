@@ -20,11 +20,18 @@ Route::prefix("auth")->controller(\App\Http\Controllers\AuthController::class)->
     Route::post("/login", "doLogin");
     Route::delete("/logout", "logout")->middleware("auth")->name("auth.logout");
     Route::get("/register", "register")->middleware("guest")->name("auth.register");
+
 });
-Route::prefix("products")->controller(\App\Http\Controllers\productController::class)->group(function () {
+Route::prefix("products")->middleware("auth")->controller(\App\Http\Controllers\productController::class)->group(function () {
 
     Route::get("/", "index")->name("product.index");
     Route::get("/{id}", "product")->name("product.product");
 });
 
+
+Route::prefix("cart")->middleware("auth")->controller(\App\Http\Controllers\cartController::class)->group(function () {
+
+    Route::get("/", "index")->name("cart");
+    Route::post("/addToCard/{id}/{qty}", "addToCard")->name("cart.addtocart");
+});
 //admin Route

@@ -52,4 +52,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function beersCart()
+    {
+        return $this->belongsToMany(beer::class)->withPivot("quantity");
+    }
 }

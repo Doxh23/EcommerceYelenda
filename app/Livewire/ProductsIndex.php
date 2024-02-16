@@ -4,12 +4,15 @@ namespace App\Livewire;
 
 use App\Models\beer;
 use App\Models\brand;
+use App\Models\User;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\Features\SupportPagination\PaginationUrl;
 use Livewire\Features\SupportQueryString\BaseUrl;
+use mysql_xdevapi\Exception;
 
 class ProductsIndex extends Component
 {
@@ -53,13 +56,32 @@ class ProductsIndex extends Component
         $this->product = $this->product->get();
     }
 
-    public function setBrand()
+    public function addToCard($id, $qty)
     {
+        $user = Auth::user();
+        $beerCart = $user->beersCart();
+
+
+        try {
+            $beer = $beerCart->where("id", $id)->first();
+
+            if ($beer) {
+
+
+                $beerCart->updateExistingPivot($id,
+                    ["quantity" => $beer->pivot->quantity += $qty,
+                        "updated_at" => now()]);
+
+
+            } else {
+                $beerCart->attach($id, ["quantity" => $qty, 'created_at' => now(),
+                    'updated_at' => now()]);
+            }
+        } catch (Exception $ex) {
+
+        }
 
     }
 
-    public function refresh()
-    {
-        $this->setProduct();
-    }
+
 }

@@ -56,4 +56,9 @@ class beer extends Model
 
         return $this->belongsTo(category::class);
     }
+
+    public function usersCart()
+    {
+        return $this->belongsToMany(\http\Client\Curl\User::class);
+    }
 }

@@ -4,6 +4,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @livewireStyles
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -38,6 +39,7 @@
 
 
         @auth
+
             <form action="{{route("auth.logout")}}" method="post">
                 @csrf
                 @method('DELETE')
@@ -46,9 +48,21 @@
         @endauth
 
     </ul>
-    <div class="text-center align-text-bottom self-center">
-        <p>test</p>
+
+    <div class="relative text-center align-text-bottom self-center">
+        @auth
+            <a href="{{route("cart")}}"> <img
+
+                    class="w-10 h-fit"
+                    src="/storage/cart.svg"
+                    alt="">
+                <div class="absolute bg-teal-900 w-4 h-4 top-0 -left-1 text-[12px] text-center  rounded-full">
+                    {{$cartNbr}}
+                </div>
+            </a>
+        @endauth
     </div>
+
 </nav>
 {{--transform translate-x-1/2 translate-y-1/2--}}
 
@@ -62,7 +76,6 @@
 <main class="min-h-[calc(100vh-48px)]  grid">
     @yield("content")
 </main>
-
 @livewireScripts
 </body>
 </html>

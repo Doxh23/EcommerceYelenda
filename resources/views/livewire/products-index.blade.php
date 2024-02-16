@@ -1,20 +1,31 @@
 <div class=" flex flex-col w-[95%] mx-auto ">
     <div class="h-40 flex justify-left  items-center">
-        <H3>salutttttttttttt</H3>
+        <H3></H3>
     </div>
 
 
     <div class="w-full h-full flex flex-row">
-        <div class=" w-3/12 h-full max-w-80  border shadow-2xl ">
-            <ul>
+        <div class=" w-3/12 h-full max-w-80  border shadow-2xl pt-2 ">
+
+            <ul class="flex flex-col text-center gap-4">
+                <label>
+                    <input type="radio" wire:model.live="brand" name="brand" value=""
+                           id="0"
+                           class="text-black">
+                    all
+                </label>
                 @foreach($brandData as $item)
-                    <label for="{{$item->name}}">{{$item->name}}</label>
-                    <input type="radio" wire:click="setBrand" value="{{$item->name}}" class="text-black"
-                           wire:model="brand"
-                           name="brand"
-                           id="{{$item->name}}">
+                    <label>
+                        <input type="radio" wire:model.live="brand" name="brand" value="{{$item->name}}"
+                               id="{{$item->id}}"
+                               class="text-black">
+                        {{$item->name}}
+                    </label>
+
                 @endforeach
             </ul>
+
+
         </div>
         <div class=" w-full h-full ">
             <div class="w-full  h-20 flex justify-center">
@@ -24,7 +35,7 @@
                 class="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] pt-6 gap-y-8 px-8  text-center items-center justify-center">
                 @foreach($data as $item)
                     <div onclick="window.location='{{route("product.product",["id"=>$item->id])}}'"
-                         class=" relative  w-56 h-96 place-self-center border
+                         class=" cursor-pointer relative  w-56 h-96 place-self-center border
                     border-gray-600  ">
 
                         <div class="  h-2/4 w-full bg-contain bg-no-repeat bg-center "
@@ -37,10 +48,16 @@
                             <p>{{$item->flavor->name}}</p>
                             <p>{{$item->price}} €</p>
                             <div class="flex justify-end">
-                                <a href="">add to card</a>
+                                <button href="" class="relative z-10 border"
+                                        wire:click.stop="addToCard({{$item->id}},1)">
+                                    add
+                                    to card
+                                </button>
+
                             </div>
                         </div>
                     </div>
+
                 @endforeach
 
 

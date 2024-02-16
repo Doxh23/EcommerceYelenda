@@ -20,4 +20,6 @@ class productController extends Controller
         return view("product.product", ["data" => $product]);
 
     }
+
+
 }
