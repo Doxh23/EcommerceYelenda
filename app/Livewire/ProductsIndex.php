@@ -4,14 +4,9 @@ namespace App\Livewire;
 
 use App\Models\beer;
 use App\Models\brand;
-use App\Models\User;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
-use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\Features\SupportPagination\PaginationUrl;
-use Livewire\Features\SupportQueryString\BaseUrl;
 use mysql_xdevapi\Exception;
 
 class ProductsIndex extends Component
@@ -25,7 +20,7 @@ class ProductsIndex extends Component
 
     public function render()
     {
-
+      
         $this->setProduct();
         $product = $this->getProduct();
         $brandData = brand::all();
@@ -60,8 +55,6 @@ class ProductsIndex extends Component
     {
         $user = Auth::user();
         $beerCart = $user->beersCart();
-
-
         try {
             $beer = $beerCart->where("id", $id)->first();
 
@@ -77,6 +70,7 @@ class ProductsIndex extends Component
                 $beerCart->attach($id, ["quantity" => $qty, 'created_at' => now(),
                     'updated_at' => now()]);
             }
+            $this->dispatch("Cart_number_update");
         } catch (Exception $ex) {
 
         }

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -51,15 +52,7 @@
 
     <div class="relative text-center align-text-bottom self-center">
         @auth
-            <a href="{{route("cart")}}"> <img
-
-                    class="w-10 h-fit"
-                    src="/storage/cart.svg"
-                    alt="">
-                <div class="absolute bg-teal-900 w-4 h-4 top-0 -left-1 text-[12px] text-center  rounded-full">
-                    {{$cartNbr}}
-                </div>
-            </a>
+            <livewire:cart-count/>
         @endauth
     </div>
 

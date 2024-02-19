@@ -32,6 +32,6 @@ Route::prefix("products")->middleware("auth")->controller(\App\Http\Controllers\
 Route::prefix("cart")->middleware("auth")->controller(\App\Http\Controllers\cartController::class)->group(function () {
 
     Route::get("/", "index")->name("cart");
-    Route::post("/addToCard/{id}/{qty}", "addToCard")->name("cart.addtocart");
+    Route::post("/addToCart/{id}/{qty}", "addToCard")->name("cart.addtocart");
 });
 //admin Route

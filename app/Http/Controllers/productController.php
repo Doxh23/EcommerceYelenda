@@ -17,7 +17,7 @@ class productController extends Controller
     {
         $product = beer::find($id)->load(["brand", "flavor", "brewing", "containing", "category"]);
 
-        return view("product.product", ["data" => $product]);
+        return view("product.product", ["beer" => $product]);
 
     }
 

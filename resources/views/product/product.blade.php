@@ -7,37 +7,43 @@
 
         <div class="infos w-full  flex flex-row">
             <div class=" w-6/12 h-auto ">
-                <img src="{{asset("storage/".$data->image_path)}}" class="w-80 h-80 mx-auto" alt="">
+                
+                <img src="{{asset("storage/".$beer->image_path)}}" class="w-80 h-80 mx-auto" alt="">
             </div>
             <div
                 class=" w-6/12 h-auto flex flex-col justify-end text-2xl justify-center shadow shadow-sky-50 gap-4 pl-4">
-                <h4>{{$data->brand->name}} {{$data->name}}</h4>
-                <p>{{$data->price}} €</p>
+                <h4>{{$beer->brand->name}} {{$beer->name}}</h4>
+                <p>{{$beer->price}} €</p>
 
-                <p>brewery : {{$data->brewing->name}}</p>
-                <p>alcohol content : {{$data->degree}}%</p>
-                <p>containing : {{$data->containing->name}}</p>
-                <p>flavor : {{$data->flavor->name}}</p>
+                <p>brewery : {{$beer->brewing->name}}</p>
+                <p>alcohol content : {{$beer->degree}}%</p>
+                <p>containing : {{$beer->containing->name}}</p>
+                <p>flavor : {{$beer->flavor->name}}</p>
                 <div class="sales">
 
-                    @if($data->stock > 0)
-                        <div x-data="{ quantity: 0,maxStock : {{$data->stock}} }">
+                    @if($beer->stock > 0)
+                        <div id="myComponent" x-data=" { quantity: 0,stock:{{$beer->stock-1}}  }">
                             <button @click="quantity > 0 ? quantity-- : 0">-</button>
-                            <button @click="quantity <= 100 && quantity <= maxStock  ? quantity++ : quantity">+
+                            <button @click="quantity < 100 && quantity <= stock  ? quantity++ : quantity">
+                                +
                             </button>
 
 
-                            <form action="" method="POST">
+                            <form id="addToCartForm"
+                                  x-bind:action=`/cart/addToCart/{{$beer->id}}/${quantity}`
+                                  method="POST">
                                 @csrf
 
 
-                                <input class="text-black" type="number" x-model.number="quantity" min="0"
-                                       :max="Math.min(maxStock, 100)"
-                                       @input="quantity = Math.min(quantity, Math.min(maxStock, 100))">
+                                <input class="text-black" type="number" name="qty" x-model="quantity" min="0"
+                                       x-bind:max="Math.min(100,stock)"
+                                       @input="quantity = Math.min(quantity, Math.min(stock, 100))">
 
 
-                                <button type="submit">Envoyer</button>
+                                <button type="submit" @click="test">Envoyer</button>
                             </form>
+
+
                         </div>
                     @else
                         <p>out of stock</p>
@@ -80,5 +86,8 @@
         <div class="comment mb-20"></div>
 
     </div>
+    <script>
 
+
+    </script>
 @endsection

@@ -28,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
             }
             $view->with('cartNbr', $cartNbr);
         });
+
     }
 }
