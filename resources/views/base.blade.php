@@ -50,7 +50,7 @@
 
     </ul>
 
-    <div class="relative text-center align-text-bottom self-center">
+    <div class="relative text-center align-text-bottom  self-center">
         @auth
             <livewire:cart-count/>
         @endauth
